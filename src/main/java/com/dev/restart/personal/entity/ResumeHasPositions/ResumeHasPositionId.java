@@ -1,4 +1,4 @@
-package com.dev.restart.personal.entity.ResumeHasEmployeeBenefits;
+package com.dev.restart.personal.entity.ResumeHasPositions;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
@@ -11,8 +11,8 @@ import java.io.Serializable;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ResumeHasEmployeeBenefitId implements Serializable {
+public class ResumeHasPositionId implements Serializable {
 
     private Long resumeId;
-    private Long employeeBenefitId;
+    private Long positionId;
 }
