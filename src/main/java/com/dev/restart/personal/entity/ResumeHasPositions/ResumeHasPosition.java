@@ -28,4 +28,10 @@ public class ResumeHasPosition {
     @MapsId("positionId")
     @JoinColumn(name = "position_id")
     private Position position;
+
+    public ResumeHasPosition(Resume resume, Position position) {
+        this.resume = resume;
+        this.position = position;
+        this.id = new ResumeHasPositionId(resume.getId(), position.getId());
+    }
 }

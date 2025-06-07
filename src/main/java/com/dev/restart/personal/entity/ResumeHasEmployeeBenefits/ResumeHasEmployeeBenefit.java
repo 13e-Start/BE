@@ -29,4 +29,10 @@ public class ResumeHasEmployeeBenefit {
     @MapsId("employeeBenefitId")
     @JoinColumn(name = "employee_benefit_id")
     private EmployeeBenefit employeeBenefit;
+
+    public ResumeHasEmployeeBenefit(Resume resume, EmployeeBenefit employeeBenefit) {
+        this.resume = resume;
+        this.employeeBenefit = employeeBenefit;
+        this.id = new ResumeHasEmployeeBenefitId(resume.getId(), employeeBenefit.getId());
+    }
 }

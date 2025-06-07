@@ -1,18 +1,15 @@
 package com.dev.restart.company.entity;
 
 import com.dev.restart.metadata.entity.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "company")
-@Getter
+@Getter @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,8 +24,11 @@ public class Company extends BaseEntity {
     @Column(nullable = false, length = 100)
     private String password;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 45)
     private String name;
+
+    @Column(nullable = false, length = 45)
+    private String businessNumber;
 
     @Column(name = "tel_number", nullable = false, length = 45)
     private String telNumber;
@@ -44,5 +44,14 @@ public class Company extends BaseEntity {
     private String symbolImageUrl;
 
     @Column(name = "is_active", nullable = false)
+    @Builder.Default
     private Boolean isActive = true;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "franchise_post_id")
+    private FranchisePost franchisePost;
+
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private Set<RecruitPost> recruitPosts = new HashSet<>();;
 }

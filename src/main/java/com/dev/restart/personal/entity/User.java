@@ -1,16 +1,15 @@
 package com.dev.restart.personal.entity;
 
 import com.dev.restart.metadata.entity.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -33,17 +32,21 @@ public class User extends BaseEntity {
     private String name;
 
     @Column(name = "birth_date", nullable = false)
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
 
     @Column(name = "tel_number", nullable = false, length = 45)
     private String telNumber;
 
-    @Column(length = 100)
+    @Column(name = "address", length = 100)
     private String address;
 
     @Column(name = "profile_image_url", length = 100)
     private String profileImageUrl;
 
-    @Column(name = "is_active", nullable = false)
-    private Boolean isActive = true;
+    @Column(name = "is_active", nullable = false, columnDefinition = "true")
+    private Boolean isActive;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private Set<RecruitApplicant> recruitApplicants = new HashSet<>();
 }

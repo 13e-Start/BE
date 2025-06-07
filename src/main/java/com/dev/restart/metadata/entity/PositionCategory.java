@@ -20,4 +20,8 @@ public class PositionCategory {
 
     @Column(nullable = false, length = 45)
     private String name;
+
+    public PositionCategory(Long id) {
+        this.id = id;
+    }
 }

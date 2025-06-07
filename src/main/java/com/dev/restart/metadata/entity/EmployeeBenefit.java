@@ -24,4 +24,8 @@ public class EmployeeBenefit {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_benefits_category_id", nullable = false)
     private EmployeeBenefitsCategory category;
+
+    public EmployeeBenefit(long id) {
+        this.id = id;
+    }
 }

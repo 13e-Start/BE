@@ -28,4 +28,10 @@ public class ResumeHasRegion {
     @MapsId("regionId")
     @JoinColumn(name = "region_id")
     private Region region;
+
+    public ResumeHasRegion(Resume resume, Region region) {
+        this.resume = resume;
+        this.region = region;
+        this.id = new ResumeHasRegionId(resume.getId(), region.getId());
+    }
 }

@@ -20,4 +20,8 @@ public class HighestLevelEducation {
 
     @Column(nullable = false, length = 45)
     private String name;
+
+    public HighestLevelEducation(Long id) {
+        this.id = id;
+    }
 }
