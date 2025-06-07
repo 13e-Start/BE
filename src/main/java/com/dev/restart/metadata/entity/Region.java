@@ -20,4 +20,8 @@ public class Region {
 
     @Column(nullable = false, length = 45)
     private String name;
+
+    public Region(Long id) {
+        this.id = id;
+    }
 }

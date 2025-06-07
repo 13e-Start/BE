@@ -24,4 +24,8 @@ public class Position {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "position_category_id", nullable = false)
     private PositionCategory category;
+
+    public Position(Long id) {
+        this.id = id;
+    }
 }
